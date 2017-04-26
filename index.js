@@ -1,10 +1,29 @@
-const server = require('socket.io')();
+const bodyParser = require('body-parser');
+const app = require('express')();
+const httpServer = require('http').createServer(app);
+const socketServer = require('socket.io')(httpServer);
 
-server.on('connection', client => {
-
+socketServer.on('connection', client => {
   console.log('Connection');
-
-  client.emit('yo', { hello: 'this is server '});
 });
 
-server.listen(4567);
+const tvs = socketServer.of('/tv');
+const remoteControls = socketServer.of('/control');
+
+tvs.on('connection', client => {
+  console.log('A new TV is connected');
+});
+
+remoteControls.on('connection', client => {
+  console.log('A new Remote Control is connected');
+});
+
+app.use(bodyParser.json());
+
+app.post('/config', (request, response) => {
+  tvs.emit('config-update', request.body);
+  return response.sendStatus(200);
+});
+
+
+httpServer.listen(4567, () => console.log('Up on 4567'));
