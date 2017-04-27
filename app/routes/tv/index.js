@@ -1,10 +1,14 @@
-module.exports = {
+const config = require('./config');
 
-  config: {
-    post: socket => (request, response) => {
-      socket.emit('config-update', request.body);
-      response.sendStatus(200);
-    }
+module.exports = router => {
+
+  const route = router.route('/config');
+
+  return socket => {
+    const handler = config(socket);
+    route.post(handler.post);
+
+    return router;
   }
 
 };

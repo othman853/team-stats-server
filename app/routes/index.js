@@ -1,12 +1,6 @@
-const { config } = require('./tv');
-const tvRouter = require('express').Router();
-const tvConfigRoute = tvRouter.route('/config');
+const express = require('express');
+const tvHandlers = require('./tv');
 
 module.exports = {
-
-  tv: socket => {
-    tvConfigRoute.post(config.post(socket));
-    return tvRouter;
-  }
-
+  tv: tvHandlers(express.Router())
 };
