@@ -6,23 +6,27 @@ const routes = require('./routes');
 const tvSocketServer = socketServer.of('/tv');
 const controlSocketServer = socketServer.of('/control');
 
-tvSocketServer.on('connection', client => {
-  console.log('A new TV is connected');
-});
+module.exports = configDir => {
 
-controlSocketServer.on('connection', client => {
-  console.log('A new Remote Control is connected');
-});
+  tvSocketServer.on('connection', client => {
+    console.log('A new TV is connected');
+  });
 
-expressServer.use(bodyParser.json());
-expressServer.use('/tv', routes.tv(tvSocketServer));
+  controlSocketServer.on('connection', client => {
+    console.log('A new Remote Control is connected');
+  });
 
-module.exports = {
-  http: httpServer,
-  express: expressServer,
-  socket: {
-    all: socketServer,
-    tv: tvSocketServer,
-    control: controlSocketServer
-  }
+  expressServer.use(bodyParser.json());
+  expressServer.use('/tv', routes.tv(tvSocketServer));
+
+  return {
+    http: httpServer,
+    express: expressServer,
+    socket: {
+      all: socketServer,
+      tv: tvSocketServer,
+      control: controlSocketServer
+    }
+  };
+
 };

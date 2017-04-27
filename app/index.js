@@ -1,4 +1,7 @@
-const bodyParser = require('body-parser');
-const servers = require('./servers');
+const args = require('yargs')
+  .default({ configDir: '/tmp/team-stats/config', port: 4567 })
+  .argv;
 
-servers.http.listen(4567, () => console.log('Up on 4567'));
+const servers = require('./servers')(args.configDir);
+
+servers.http.listen(args.port, () => console.log(`Up on ${args.port}`));
