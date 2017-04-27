@@ -17,7 +17,7 @@ module.exports = configDir => {
   });
 
   expressServer.use(bodyParser.json());
-  expressServer.use('/tv', routes.tv(tvSocketServer));
+  expressServer.use('/tv', routes.tv(tvSocketServer, configDir));
 
   return {
     http: httpServer,

@@ -4,7 +4,8 @@
   "main": "app/index.js",
   "license": "MIT",
   "scripts": {
-    "test:unit": "mocha --opts test/mocha.opts test/unit"
+    "test:unit": "mocha --opts test/mocha.opts test/unit",
+    "test:component": "mocha --opts test/mocha.opts test/component"
   },
   "dependencies": {
     "body-parser": "^1.17.1",
