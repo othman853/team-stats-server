@@ -1,11 +1,11 @@
 const moment = require('moment');
 
-const DATE_STRING_FORMAT = 'Y-MM-D';
+const DATE_TIME_STRING_FORMAT = 'Y-MM-D-hh-mm-ss';
 
 module.exports = {
-  date: {
-    today: {
-      asString: (format = DATE_STRING_FORMAT) => moment().format(format)
+  dateTime: {
+    now: {
+      asString: (format = DATE_TIME_STRING_FORMAT) => moment().format(format)
     }
   }
 };
