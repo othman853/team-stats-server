@@ -1,15 +1,24 @@
 {
   "name": "team-stats-server",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "app/index.js",
   "license": "MIT",
+  "scripts": {
+    "test:unit": "mocha --opts test/mocha.opts test/unit"
+  },
   "dependencies": {
     "body-parser": "^1.17.1",
     "express": "^4.15.2",
     "socket.io": "^1.7.3"
   },
   "devDependencies": {
+    "chai": "^3.5.0",
     "get-port": "^3.1.0",
-    "socket.io-client": "^1.7.3"
+    "mocha": "^3.3.0",
+    "sinon": "^2.1.0",
+    "sinon-as-promised": "^4.0.3",
+    "sinon-chai": "^2.9.0",
+    "socket.io-client": "^1.7.3",
+    "supertest": "^3.0.0"
   }
 }

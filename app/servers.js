@@ -17,11 +17,6 @@ controlSocketServer.on('connection', client => {
 expressServer.use(bodyParser.json());
 expressServer.use('/tv', routes.tv(tvSocketServer));
 
-expressServer.post('/config', (request, response) => {
-  tvSocketServer.emit('config-update', request.body);
-  return response.sendStatus(200);
-});
-
 module.exports = {
   http: httpServer,
   express: expressServer,
