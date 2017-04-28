@@ -10,4 +10,4 @@ module.exports = {
   json: {
     stringify: JSON.stringify
   }
-}
+};

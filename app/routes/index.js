@@ -1,6 +1,25 @@
 const express = require('express');
-const tvHandlers = require('./tv');
+const handlersConstructor = require('./handlers');
+const servicesConstructor = require('./services');
 
-module.exports = {
-  tv: tvHandlers(express.Router())
+const routers = {
+  tv: express.Router()
 };
+
+const routes = {
+  tv: {
+    configuration: routers.tv.route('/config')
+  }
+}
+
+function RoutesConstructor(configDir, mainSocketServer) {
+
+  const services = servicesConstructor(configDir, mainSocketServer);
+  const handlers = handlersConstructor(services);
+
+  routes.tv.configuration.post(handlers.tv.configuration.post);
+
+  return routers;
+};
+
+module.exports = RoutesConstructor;

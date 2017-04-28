@@ -1106,6 +1106,10 @@ supports-color@3.1.2:
   dependencies:
     has-flag "^1.0.0"
 
+testdouble-chai@^0.5.0:
+  version "0.5.0"
+  resolved "https://registry.yarnpkg.com/testdouble-chai/-/testdouble-chai-0.5.0.tgz#ce1af5327238435735c04fbce62962b1a6a7e6fa"
+
 testdouble@^2.1.2:
   version "2.1.2"
   resolved "https://registry.yarnpkg.com/testdouble/-/testdouble-2.1.2.tgz#8a376c5cb9b2c9cea90780b874168aa5b6eeb8a8"
