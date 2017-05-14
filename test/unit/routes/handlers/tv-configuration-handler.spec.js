@@ -8,10 +8,18 @@ describe('unit -> handlers -> tv-configuration-handler', () => {
     expect(builtHandler.post).to.be.a('function');
   });
 
-  it.skip('Should save the configuration', () => {
+  it('Should save the configuration', () => {
+
+    let saveThen;
+    const saveStub = {
+      then(fn) {
+        saveThen = fn;
+        return { catch: td.function() };
+      }
+    };
 
     const services = {
-      tvConfiguration: { save: td.function() },
+      tvConfiguration: { save: () =>  saveStub },
       socket: { channels: { tv: { emit: td.function() } } }
     };
 
@@ -20,15 +28,15 @@ describe('unit -> handlers -> tv-configuration-handler', () => {
     };
 
     const response = {
+      sendStatus: td.function('response.sendStatus'),
       status: td.function('response.status'),
       json: td.function('response.json')
     };
 
-    td.when(services.tvConfiguration.save(request.body)).thenResolve({});
-
     const builtHandler = handler(services);
 
     builtHandler.post(request, response);
+    saveThen();
 
   });
 

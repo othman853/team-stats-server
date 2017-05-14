@@ -7,8 +7,7 @@ function TvConfigurationHandler(services) {
       services.tvConfiguration
       .save(request.body)
       .then(() => {
-        services.socket.channels.tv
-          .emit(socket.events.CONFIG_UPDATE, request.body);
+        services.socket.channels.tv.emit('CONFIG_UPDATE', request.body);
         return response.sendStatus(201);
       })
       .catch(error => {
