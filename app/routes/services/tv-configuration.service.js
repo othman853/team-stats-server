@@ -1,5 +1,5 @@
 const { file, json, path } = require('./io-service');
-const time = { dateTime } = require('./time-service');
+const time = require('./time-service');
 
 module.exports = {
 
