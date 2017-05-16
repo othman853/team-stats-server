@@ -5,7 +5,7 @@ describe('unit -> services -> io', () => {
 
     const stubs = { 'path': pathStub, 'fs': fsStub };
 
-    const io = load('routes/services/io.service', stubs);
+    const io = load('services/io.service', stubs);
 
     it('Should have a shortcut to path module', () => {
       expect(io.path).to.exist;

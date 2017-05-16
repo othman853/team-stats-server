@@ -2,7 +2,7 @@ describe('unit -> services -> time', () => {
 
   const moment = ({ format: td.function() });
 
-  const time = load('routes/services/time.service', { 'moment': () => moment });
+  const time = load('services/time.service', { 'moment': () => moment });
 
   it('Should have shortcuts to date formating', () => {
     expect(time.now).to.exist;
